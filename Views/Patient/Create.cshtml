@@ -1,0 +1,47 @@
+﻿@model PatientManagement.Models.Patient
+
+@{
+    ViewData["Title"] = "Create Patient";
+}
+
+<h2>UI DESIGN</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DiseaseId" class="control-label">Disease</label>
+        <select asp-for="DiseaseId" class="form-control" asp-items="@(ViewBag.Diseases != null ? new SelectList(ViewBag.Diseases, "Id", "Name") : new SelectList(Enumerable.Empty<SelectListItem>(), "Value", "Text"))">
+            <option value="">Select Disease</option>
+        </select>
+        <span asp-validation-for="DiseaseId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Epilepsy" class="control-label">Epilepsy</label>
+        <select asp-for="Epilepsy" class="form-control">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <span asp-validation-for="Epilepsy" class="text-danger"></span>
+    </div>
+
+   
+    <div class="form-group">
+        <label asp-for="NCDs" class="control-label">NCDs</label>
+        <select asp-for="NCDs" class="form-control" asp-items="@(ViewBag.NCDs != null ? new MultiSelectList(ViewBag.NCDs, "Id", "Name") : new MultiSelectList(Enumerable.Empty<SelectListItem>(), "Value", "Text"))" multiple></select>
+        <span asp-validation-for="NCDs" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Allergies" class="control-label">Allergies</label>
+        <select asp-for="Allergies" class="form-control" asp-items="@(ViewBag.Allergies != null ? new MultiSelectList(ViewBag.Allergies, "Id", "Name") : new MultiSelectList(Enumerable.Empty<SelectListItem>(), "Value", "Text"))" multiple></select>
+        <span asp-validation-for="Allergies" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
